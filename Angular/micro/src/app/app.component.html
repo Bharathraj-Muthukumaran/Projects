@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="top">
+  <h1>Boat Ticket Booking System</h1>
+</div>
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-10" id ="middle">
+                       <form #myForm="ngForm">
+                          <div class="form-group">
+                            <label for="number">
+                              Ticket Number
+                          </label>
+                          <input type="text" class="form-control" name="numb" #numb="ngModel" ngModel required pattern="[0-9]+"/>
+                      </div>                          
+                      <div *ngIf="numb.touched">
+                        <div *ngIf="numb.errors?.['required']">
+                          <b style = "color: red;">Ticket Number Required</b>
+                          </div>
+                          <div *ngIf="seat.errors?.['pattern']">
+                            <font color="red"><b>Invalid </b></font>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                              <label for="From">
+                                  From
+                              </label>
+                              <input type="text" class="form-control" name="from" #from="ngModel" ngModel required pattern="[a-z]+"/>
+                            </div>
+                          <div *ngIf="from.touched">
+                            <div *ngIf="from.errors?.['required']">
+                              <b style = "color: red;">Source Required</b>
+                              </div>
+                              <div *ngIf="from.errors?.['pattern']">
+                                <font color="red"><b>Invalid</b></font>
+                              </div>
+                            </div>
+                          <div class="form-group">
+                             <label for="Destination">
+                                  Destination
+                              </label>
+                              <input type="text" class="form-control" name="destination" #destination="ngModel" ngModel required pattern="[a-z]+" />
+                          </div>
+                          <div *ngIf="destination.touched">
+                            <div *ngIf="destination.errors?.['required']">
+                              <b style = "color: red;">Destination Required</b>
+                              </div>
+                              <div *ngIf="destination.errors?.['pattern']">
+                                <font color="red"><b>Invalid </b></font>
+                              </div>
+                            </div>
+                          <div class="form-group mb-3">
+                              <label for="noofseats">
+                                  No Of Seats
+                              </label>
+                              <input type="text" class="form-control" name="seat" #seat="ngModel" ngModel required pattern="[0-9]+"/>
+                          </div>                          
+                          <div *ngIf="seat.touched">
+                            <div *ngIf="seat.errors?.['required']">
+                              <b style = "color: red;">No Of Seats Required</b>
+                              </div>
+                              <div *ngIf="seat.errors?.['pattern']">
+                                <font color="red"><b>Invalid</b></font>
+                              </div>
+                            </div>
+
+                          <button class="btn btn-success" (click)="inserts(myForm.value)"> 
+                             Book Ticket
+                          </button>
+                      &nbsp;&nbsp;
+                          <button class="btn btn-primary" (click)="updates(myForm.value)">
+                             Modify Ticket
+                          </button>&nbsp;&nbsp;
+                          <button class="btn btn-danger" (click)="deletes(myForm.value)">
+                              Delete Ticket
+                          </button>&nbsp;&nbsp;
+                          <button class="btn btn-warning" (click)="views(myForm.value)">
+                              View Booked
+                          </button>
+                          &nbsp;&nbsp;
+                          <button class="btn btn-info" (click)="viewall()">
+                              View All Tickets
+                          </button>
+                      </form>
+                      
+                  </div>
+              </div>
+          </div>
+          <h3>{{result}}</h3>
+
+          <div style="width: 100%;" *ngIf="flag">
+            <table width="50%" align="center" class="table table-borderd">
+             <tr><th>Employee Id</th><th>Employee Name</th><th>Employee Salary</th><th>No Of Seats</th></tr> 
+              <tr *ngFor="let tick of ticketArr">
+                  <td> {{tick.id}} </td><td> {{tick.from}} </td><td> {{tick.destination}} </td><td>{{tick.seat}}</td>
+              </tr>
+           </table>
+           </div>
+</body>
+</html>

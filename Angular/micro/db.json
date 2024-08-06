@@ -1,0 +1,22 @@
+{
+  "tickets": [
+    {
+      "id": "101",
+      "from": "texas",
+      "destination": "chennai",
+      "seat": "3"
+    },
+    {
+      "id": "102",
+      "from": "sydney",
+      "destination": "melburn",
+      "seat": "5"
+    },
+    {
+      "id": "103",
+      "from": "miami",
+      "destination": "brooklyn",
+      "seat": "2"
+    }
+  ]
+}
